@@ -1,0 +1,53 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 1px solid #e6e6e6;
+
+  .checkbox {
+    width: 24px;
+    height: 24px;
+    appearance: none;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:checked {
+      border-color: #4caf50;
+      position: relative;
+    }
+
+    &:checked::after {
+      content: "✔";
+      color: #4caf50;
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+  .completed {
+    text-decoration: line-through;
+    color: #bbb;
+  }
+
+  .removeButton {
+    margin-left: auto;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: red;
+    opacity: 0.6;
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
