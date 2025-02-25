@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
 
   return (
     <div className={styles.footer}>
-      <span>{tasksLeft} items left</span>
+      <p>{tasksLeft} items left</p>
       <div className={styles.filters}>
         <button
           className={filter === "all" ? styles.activeFilter : ""}

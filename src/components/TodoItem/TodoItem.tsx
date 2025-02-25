@@ -24,9 +24,9 @@ const TodoItem: React.FC<Props> = ({ task }) => {
         onChange={() => dispatch(toggleTask(task.id))}
         className={styles.checkbox}
       />
-      <span className={task.completed ? styles.completed : ""}>
+      <p className={task.completed ? styles.completed : ""}>
         {task.text}
-      </span>
+      </p>
     </li>
   );
 };

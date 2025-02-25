@@ -1,14 +1,16 @@
 .item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
-  font-size: 18px;
+  gap: 38px;
+  font-weight: 300;
+  padding: 25px 15px;
+  font-size: 44px;
   border-bottom: 1px solid #e6e6e6;
 
   .checkbox {
-    width: 24px;
-    height: 24px;
+    position: relative;
+    width: 56px;
+    height: 56px;
     appearance: none;
     border: 2px solid #ccc;
     border-radius: 50%;
@@ -24,30 +26,20 @@
     }
 
     &:checked::after {
-      content: "✔";
-      color: #4caf50;
-      font-size: 16px;
-      font-weight: bold;
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      width: 40px;
+      height: 40px;
+      background-image: url("../../assets/tick.svg");
+      background-size: 40px 40px;
+      background-repeat: no-repeat;
     }
   }
 
   .completed {
     text-decoration: line-through;
     color: #bbb;
-  }
-
-  .removeButton {
-    margin-left: auto;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: red;
-    opacity: 0.6;
-    transition: 0.2s;
-
-    &:hover {
-      opacity: 1;
-    }
   }
 }
