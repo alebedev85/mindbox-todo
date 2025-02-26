@@ -17,9 +17,10 @@ const TodoInput: React.FC<Props> = ({ addTask }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form data-testid="form" onSubmit={handleSubmit} className={styles.form}>
       <img className={styles.img} src={ArrowDown} alt="" />
       <input
+        data-testid="todoInput"
         type="text"
         placeholder="What needs to be done?"
         value={text}

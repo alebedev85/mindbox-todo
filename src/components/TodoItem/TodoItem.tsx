@@ -8,19 +8,16 @@ interface Props {
 }
 
 const TodoItem: React.FC<Props> = ({ task, toggleTask }) => {
-
-
   return (
     <li className={styles.item}>
       <input
+        // role="checkbox"
         type="checkbox"
         checked={task.completed}
         onChange={() => toggleTask(task.id)}
         className={styles.checkbox}
       />
-      <p className={task.completed ? styles.completed : ""}>
-        {task.text}
-      </p>
+      <p className={task.completed ? styles.completed : ""}>{task.text}</p>
     </li>
   );
 };

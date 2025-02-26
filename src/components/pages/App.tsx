@@ -20,7 +20,7 @@ const App: React.FC = () => {
       text,
       completed: false,
     };
-    setTasks((prev) => [...prev, newTask]);
+    setTasks((prev) => [newTask, ...prev]);
   };
 
   const toggleTask = (id: number) => {

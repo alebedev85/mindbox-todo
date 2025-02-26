@@ -35,7 +35,7 @@ const Footer: React.FC<Props> = ({ tasks, filter, setFilter, clearCompleted }) =
           Completed
         </button>
       </div>
-      <button onClick={clearCompleted} className={styles.clearButton}>
+      <button data-testid="clearButton" onClick={clearCompleted} className={styles.clearButton}>
         Clear completed
       </button>
     </div>
