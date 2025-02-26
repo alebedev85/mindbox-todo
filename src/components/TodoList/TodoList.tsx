@@ -1,11 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store/";
 import TodoItem from "../TodoItem/TodoItem";
+import { Filter, Task } from "../../types";
 import styles from "./TodoList.module.scss";
 
-const TodoList: React.FC = () => {
-  const { tasks, filter } = useSelector((state: RootState) => state.todo);
+type Props = {
+  tasks: Task[];
+  filter: Filter;
+  toggleTask: (id: number) => void;
+};
+
+const TodoList: React.FC<Props> = ({ tasks, filter, toggleTask}) => {
 
   const filteredTasks = tasks.filter((task) => {
     if (filter === "active") return !task.completed;
@@ -16,7 +20,7 @@ const TodoList: React.FC = () => {
   return (
     <ul className={styles.list}>
       {filteredTasks.map((task) => (
-        <TodoItem key={task.id} task={task} />
+        <TodoItem key={task.id} task={task} toggleTask={toggleTask}/>
       ))}
     </ul>
   );

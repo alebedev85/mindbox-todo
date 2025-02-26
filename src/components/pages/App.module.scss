@@ -16,36 +16,3 @@
   background: white;
   box-shadow: 6px 7px 10px rgba(0, 0, 0, 0.5);
 }
-
-.inputBlock {
-  display: flex;
-  padding: 32px 20px;
-  gap: 38px;
-  border-bottom: 2px solid #e6e6e6;
-}
-
-.img{
-  width: 45px;
-  height: 45px;
-  opacity: 0.5;
-}
-
-.input {
-  width: 100%;
-  font-style: italic;
-  font-size: 45px;
-  border: none;
-  outline: none;
-  box-sizing: border-box;
-  
-
-  &::placeholder {
-    font-weight: lighter;
-    opacity: 0.5;
-  }
-}
-
-.input::placeholder {
-  font-weight: lighter;
-  opacity: 0.5;
-}

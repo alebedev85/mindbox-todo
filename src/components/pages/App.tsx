@@ -1,40 +1,49 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTask } from "../../store/todoSlice";
-import ArrowDown from "../../assets/down-arrow.svg"
+import { Task, Filter } from "../../types";
 import TodoList from "../TodoList/TodoList";
 import Footer from "../Footer/Footer";
 import styles from "./App.module.scss";
+import TodoInput from "../TodoInput/TodoInput";
 
 const App: React.FC = () => {
-  const [inputValue, setInputValue] = useState("");
-  const dispatch = useDispatch();
 
-  const handleAddTask = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && inputValue.trim()) {
-      dispatch(addTask(inputValue));
-      setInputValue("");
-    }
+  const [tasks, setTasks] = useState<Task[]>([
+    { id: 1, text: "Тестовое задание", completed: false },
+    { id: 2, text: "Прекрасный код", completed: true },
+    { id: 3, text: "Покрытие тестами", completed: false },
+  ]);
+  const [filter, setFilter] = useState<Filter>("all");
+
+  const addTask = (text: string) => {
+    const newTask: Task = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    setTasks((prev) => [...prev, newTask]);
+  };
+
+  const toggleTask = (id: number) => {
+    setTasks((prev) =>
+      prev.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const clearCompleted = () => {
+    setTasks((prev) => prev.filter((task) => !task.completed));
   };
 
   return (
     <div className={styles.app}>
-      <h1 className={styles.title}>todos</h1>
-      <div className={styles.container}>
-        <div className={styles.inputBlock}>
-          <img className={styles.img} src={ArrowDown} alt="" />
-          <input
-            className={styles.input}
-            placeholder="What needs to be done?"
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onKeyDown={handleAddTask}
-          />
-        </div>
-        <TodoList />
-        <Footer />
-      </div>
+    <h1 className={styles.title}>todos</h1>
+    <div className={styles.container}>
+      <TodoInput addTask={addTask} />
+      <TodoList tasks={tasks} filter={filter} toggleTask={toggleTask}/>
+      <Footer tasks={tasks} filter={filter} setFilter={setFilter} clearCompleted={clearCompleted} />
     </div>
+  </div>
   );
 };
 

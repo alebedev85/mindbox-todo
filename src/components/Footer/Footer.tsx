@@ -1,12 +1,15 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../../store";
-import { setFilter, clearCompleted } from "../../store/todoSlice";
+import { Task, Filter } from "../../types";
 import styles from "./Footer.module.scss";
 
-const Footer: React.FC = () => {
-  const dispatch = useDispatch();
-  const { tasks, filter } = useSelector((state: RootState) => state.todo);
+type Props = {
+  tasks: Task[];
+  filter: Filter;
+  setFilter: (filter: Filter) => void;
+  clearCompleted: () => void;
+};
+
+const Footer: React.FC<Props> = ({ tasks, filter, setFilter, clearCompleted }) => {
   const tasksLeft = tasks.filter((t) => !t.completed).length;
 
   return (
@@ -15,24 +18,24 @@ const Footer: React.FC = () => {
       <div className={styles.filters}>
         <button
           className={filter === "all" ? styles.activeFilter : ""}
-          onClick={() => dispatch(setFilter("all"))}
+          onClick={()=>setFilter("all")}
         >
           All
         </button>
         <button
           className={filter === "active" ? styles.activeFilter : ""}
-          onClick={() => dispatch(setFilter("active"))}
+          onClick={() => setFilter("active")}
         >
           Active
         </button>
         <button
           className={filter === "completed" ? styles.activeFilter : ""}
-          onClick={() => dispatch(setFilter("completed"))}
+          onClick={() => setFilter("completed")}
         >
           Completed
         </button>
       </div>
-      <button onClick={() => dispatch(clearCompleted())} className={styles.clearButton}>
+      <button onClick={clearCompleted} className={styles.clearButton}>
         Clear completed
       </button>
     </div>

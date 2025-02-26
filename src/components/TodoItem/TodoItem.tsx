@@ -1,27 +1,21 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { toggleTask } from "../../store/todoSlice";
+import { Task } from "../../types";
 import styles from "./TodoItem.module.scss";
-
-interface Task {
-  id: number;
-  text: string;
-  completed: boolean;
-}
 
 interface Props {
   task: Task;
+  toggleTask: (id: number) => void;
 }
 
-const TodoItem: React.FC<Props> = ({ task }) => {
-  const dispatch = useDispatch();
+const TodoItem: React.FC<Props> = ({ task, toggleTask }) => {
+
 
   return (
     <li className={styles.item}>
       <input
         type="checkbox"
         checked={task.completed}
-        onChange={() => dispatch(toggleTask(task.id))}
+        onChange={() => toggleTask(task.id)}
         className={styles.checkbox}
       />
       <p className={task.completed ? styles.completed : ""}>
