@@ -11,7 +11,6 @@ const TodoItem: React.FC<Props> = ({ task, toggleTask }) => {
   return (
     <li className={styles.item}>
       <input
-        // role="checkbox"
         type="checkbox"
         checked={task.completed}
         onChange={() => toggleTask(task.id)}
